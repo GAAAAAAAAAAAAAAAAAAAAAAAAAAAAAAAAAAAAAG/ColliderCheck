@@ -21,7 +21,7 @@ protected:
 	XMFLOAT3					m_xmf3Look = XMFLOAT3(0.0f, 0.0f, 1.0f);
 
 	XMFLOAT3					m_xmf3Velocity = XMFLOAT3(0.0f, 0.0f, 0.0f);
-	XMFLOAT3     				m_xmf3Gravity = XMFLOAT3(0.0f, 0.0f, 0.0f);
+	XMFLOAT3     				m_xmf3Gravity = XMFLOAT3(0.0f, -9.8f, 0.0f);
 
 	float           			m_fPitch = 0.0f;
 	float           			m_fYaw = 0.0f;
@@ -30,6 +30,9 @@ protected:
 	float           			m_fMaxVelocityXZ = 0.0f;
 	float           			m_fMaxVelocityY = 0.0f;
 	float           			m_fFriction = 0.0f;
+
+	//중력
+	bool						m_bOnGround = false;
 
 	LPVOID						m_pPlayerUpdatedContext = NULL;
 	LPVOID						m_pCameraUpdatedContext = NULL;
@@ -100,6 +103,11 @@ public:
 		}
 		m_xmf3Position = position;
 	}
+
+	//중력
+	void ApplyGravity(float fTimeElapsed);
+	void SetOnGround(bool bGrounded) { m_bOnGround = bGrounded; }
+	void SetVelocityY(float y) { m_xmf3Velocity.y = y; }
 };
 
 class CAirplanePlayer : public CPlayer

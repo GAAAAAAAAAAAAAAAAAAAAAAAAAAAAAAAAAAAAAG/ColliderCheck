@@ -2,12 +2,12 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\Users\서가은\Desktop\다렉연습용\x64\Debug\LabProject07-3.exe</FullPath>
+      <FullPath>D:\ColliderCheck\다렉연습용\x64\Debug\LabProject07-3.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles>
     <ContentFile>
-      <FullPath>C:\Users\서가은\Desktop\다렉연습용\x64\Debug\Shaders.cso</FullPath>
+      <FullPath>D:\ColliderCheck\다렉연습용\x64\Debug\Shaders.cso</FullPath>
     </ContentFile>
   </ContentFiles>
   <SatelliteDlls />

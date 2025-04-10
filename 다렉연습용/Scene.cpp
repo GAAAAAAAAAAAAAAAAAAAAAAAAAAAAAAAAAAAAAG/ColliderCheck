@@ -252,88 +252,117 @@ bool CScene::CheckObjectByObjectCollisions(CGameObject* pTargetGameObject)
 		for (int j = 0; j < m_ppObjectShaders[i]->m_nObjects; j++)
 		{
 			CGameObject* pGameObject = m_ppObjectShaders[i]->m_ppObjects[j];
+			if (!pGameObject || pGameObject == pTargetGameObject) continue;
+
 			if (m_pPlayer->m_xmBoundingBox.Intersects(pGameObject->m_xmBoundingBox))
 			{
-				//if (m_pPlayer->m_pMesh->CheckMeshCollision(pGameObject->m_pMesh, m_pPlayer->m_xmf4x4World, pGameObject->m_xmf4x4World))
-				//{
-				//	//TODO: 여기에 충돌처리 로직 넣어보자
-				//	ResolveCollision(m_pPlayer, pGameObject);
-				//}
-
-				if (m_pPlayer->m_pMesh->CheckOBBMeshCollision(m_pPlayer->m_xmBoundingBox, pGameObject->m_pMesh, m_pPlayer->m_xmf4x4World, pGameObject->m_xmf4x4World))
+				if (nullptr != pGameObject->m_pMesh)
 				{
-					//TODO: 여기에 충돌처리 로직 넣어보자
-					ResolveCollision(m_pPlayer, pGameObject);
+					if (m_pPlayer->m_pMesh->CheckOBBMeshCollision(m_pPlayer->m_xmBoundingBox, pGameObject->m_pMesh, m_pPlayer->m_xmf4x4World, pGameObject->m_xmf4x4World))
+					{
+						float deltaY = m_pPlayer->GetPosition().y - pGameObject->GetPosition().y;
+						if (deltaY > 0.0f && deltaY < 20.0f) // 바닥이라고 판단할 수 있는 높이
+						{
+							m_pPlayer->SetOnGround(true);
+							m_pPlayer->SetVelocityY(0.0f); // y 속도 정지
+
+							return true;
+						}
+						else
+						{
+							// 바닥이 아니면 위치 복구 및 속도 제한
+							ResolveCollision(m_pPlayer, pGameObject);
+							return true;
+						}
+
+						//TODO: 여기에 충돌처리 로직 넣어보자
+						//ResolveCollision(m_pPlayer, pGameObject);
+					}
+				}
+			}
+		}
+	}
+	m_pPlayer->SetOnGround(false); // 아무 것도 닿지 않으면 공중
+	return false;
+}
+
+//void CScene::ResolveCollision(CPlayer* player, CGameObject* object)
+//{
+//	if (!player) return; // 플레이어가 유효하지 않으면 리턴
+//
+//	// 🎯 플레이어가 충돌한 경우, 이전 위치를 기준으로 복귀
+//	player->SetPosition2(player->GetBeforeCollidedPosition());
+//
+//	if (!object) return; // 충돌 대상이 없으면 더 이상 계산할 필요 없음
+//
+//	// 🎯 충돌 방향을 계산하여 해당 축 이동 제한
+//	XMFLOAT3 direction = Vector3::Subtract(player->GetPosition(), object->GetPosition());
+//	direction = Vector3::Normalize(direction);
+//
+//	XMFLOAT3 newVelocity = player->GetVelocity();
+//
+//	// X축 충돌 (좌우 이동 제한)
+//	if (fabs(direction.x) > fabs(direction.z)) {
+//		newVelocity.x = 0.0f;
+//	}
+//	// Z축 충돌 (앞뒤 이동 제한)
+//	else {
+//		newVelocity.z = 0.0f;
+//	}
+//
+//	// Y축 충돌 (점프 또는 떨어지는 경우)
+//	if (fabs(direction.y) > 0.1f) {
+//		newVelocity.y = 0.0f;
+//	}
+//
+//	player->SetVelocity(newVelocity);
+//}
+
+void CScene::ResolveCollision(CPlayer* player, CGameObject* object)
+{
+	if (!player || !object) return;
+
+	// 🎯 이동 벡터
+	XMFLOAT3 velocity = player->GetVelocity();
+
+	// 🎯 방향 벡터 (object → player)
+	XMFLOAT3 direction = Vector3::Subtract(player->GetPosition(), object->GetPosition());
+	direction = Vector3::Normalize(direction);
+
+	// 🎯 충돌 법선 벡터로 가정 (충돌한 면의 반대 방향)
+	XMFLOAT3 collisionNormal = direction;
+
+	// 🎯 슬라이딩 벡터 = 속도에서 충돌 법선 방향을 제거한 나머지
+	float dot = Vector3::DotProduct(velocity, collisionNormal);
+	XMFLOAT3 projection = Vector3::ScalarProduct(collisionNormal, dot);
+	XMFLOAT3 slideVector = Vector3::Subtract(velocity, projection);
+
+	// 🎯 새 속도 설정
+	player->SetVelocity(slideVector);
+}
+
+
+bool CScene::CheckGroundCollision(CPlayer* pPlayer)
+{
+	BoundingOrientedBox playerOBB = pPlayer->m_xmBoundingBox;
+	playerOBB.Center.y -= 1.0f; // 아래로 살짝 내려서 바닥 감지
+
+	for (int i = 0; i < m_nObjectShaders; i++)
+	{
+		for (int j = 0; j < m_ppObjectShaders[i]->m_nObjects; j++)
+		{
+			CGameObject* obj = m_ppObjectShaders[i]->m_ppObjects[j];
+			if (obj->m_pMesh && obj != pPlayer)
+			{
+				if (obj->m_pMesh->CheckOBBMeshCollision(m_pPlayer->m_xmBoundingBox, obj->m_pMesh, m_pPlayer->m_xmf4x4World, obj->m_xmf4x4World))
+				{
+					return true;
 				}
 			}
 		}
 	}
 	return false;
 }
-
-			//CGameObject* pGameObject = m_ppObjectShaders[i]->m_ppObjects[j];
-			//// AABB 충돌 감지 시 메쉬 충돌 검사 수행
-			//if (pGameObject->m_pMesh && pTargetGameObject->m_pMesh)
-			//{
-			//	if (pGameObject->m_pMesh->CheckMeshCollision(pTargetGameObject->m_pMesh, pGameObject->m_xmf4x4World, pTargetGameObject->m_xmf4x4World))
-			//	{
-			//		return true; // 메쉬 충돌 발생 시 true 반환
-			//	}
-			//}
-			////// AABB 충돌 검사
-			////if (pGameObject->m_xmBoundingBox.Intersects(pTargetGameObject->m_xmBoundingBox))
-			////{
-
-			////}
-
-//void CScene::RenderBoundingBox(ID3D12GraphicsCommandList* pd3dCommandList, CCamera* pCamera)
-//{
-//	// 바운딩 박스 쉐이더 설정
-//	m_pBoundingBoxShader->Render(pd3dCommandList, pCamera);
-//
-//	// 맵의 모든 오브젝트에 대한 AABB 렌더링
-//	for (int i = 0; i < m_nObjectShaders; i++)
-//	{
-//		if (m_ppObjectShaders[i]) m_ppObjectShaders[i]->RenderBoundingBox(pd3dCommandList, pCamera);
-//	}
-//
-//	// 플레이어의 OBB 렌더링
-//	if (m_pPlayer) m_pPlayer->RenderBoundingBox(pd3dCommandList, pCamera);
-//}
-
-
-void CScene::ResolveCollision(CPlayer* player, CGameObject* object)
-{
-	if (!player) return; // 플레이어가 유효하지 않으면 리턴
-
-	// 🎯 플레이어가 충돌한 경우, 이전 위치를 기준으로 복귀
-	player->SetPosition2(player->GetBeforeCollidedPosition());
-
-	if (!object) return; // 충돌 대상이 없으면 더 이상 계산할 필요 없음
-
-	// 🎯 충돌 방향을 계산하여 해당 축 이동 제한
-	XMFLOAT3 direction = Vector3::Subtract(player->GetPosition(), object->GetPosition());
-	direction = Vector3::Normalize(direction);
-
-	XMFLOAT3 newVelocity = player->GetVelocity();
-
-	// X축 충돌 (좌우 이동 제한)
-	if (fabs(direction.x) > fabs(direction.z)) {
-		newVelocity.x = 0.0f;
-	}
-	// Z축 충돌 (앞뒤 이동 제한)
-	else {
-		newVelocity.z = 0.0f;
-	}
-
-	// Y축 충돌 (점프 또는 떨어지는 경우)
-	if (fabs(direction.y) > 0.1f) {
-		newVelocity.y = 0.0f;
-	}
-
-	player->SetVelocity(newVelocity);
-}
-
 
 void CScene::AnimateObjects(float fTimeElapsed)
 {

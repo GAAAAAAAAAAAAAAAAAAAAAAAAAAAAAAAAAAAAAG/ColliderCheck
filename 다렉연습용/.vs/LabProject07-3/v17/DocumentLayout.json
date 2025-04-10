@@ -1,22 +1,34 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\\uC11C\uAC00\uC740\\Desktop\\\uB2E4\uB809\uC5F0\uC2B5\uC6A9\\",
+  "WorkspaceRootPath": "D:\\ColliderCheck\\\uB2E4\uB809\uC5F0\uC2B5\uC6A9\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F548DA79-2C22-4071-8A86-503474DC7273}|LabProject07-3.vcxproj|C:\\Users\\\uC11C\uAC00\uC740\\Desktop\\\uB2E4\uB809\uC5F0\uC2B5\uC6A9\\Object.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{F548DA79-2C22-4071-8A86-503474DC7273}|LabProject07-3.vcxproj|solutionrelative:Object.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F548DA79-2C22-4071-8A86-503474DC7273}|LabProject07-3.vcxproj|C:\\Users\\\uC11C\uAC00\uC740\\Desktop\\\uB2E4\uB809\uC5F0\uC2B5\uC6A9\\Mesh.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{F548DA79-2C22-4071-8A86-503474DC7273}|LabProject07-3.vcxproj|D:\\ColliderCheck\\\uB2E4\uB809\uC5F0\uC2B5\uC6A9\\Mesh.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{F548DA79-2C22-4071-8A86-503474DC7273}|LabProject07-3.vcxproj|solutionrelative:Mesh.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F548DA79-2C22-4071-8A86-503474DC7273}|LabProject07-3.vcxproj|C:\\Users\\\uC11C\uAC00\uC740\\Desktop\\\uB2E4\uB809\uC5F0\uC2B5\uC6A9\\Mesh.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{F548DA79-2C22-4071-8A86-503474DC7273}|LabProject07-3.vcxproj|solutionrelative:Mesh.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{F548DA79-2C22-4071-8A86-503474DC7273}|LabProject07-3.vcxproj|D:\\ColliderCheck\\\uB2E4\uB809\uC5F0\uC2B5\uC6A9\\Scene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F548DA79-2C22-4071-8A86-503474DC7273}|LabProject07-3.vcxproj|solutionrelative:Scene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F548DA79-2C22-4071-8A86-503474DC7273}|LabProject07-3.vcxproj|C:\\Users\\\uC11C\uAC00\uC740\\Desktop\\\uB2E4\uB809\uC5F0\uC2B5\uC6A9\\stdafx.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{F548DA79-2C22-4071-8A86-503474DC7273}|LabProject07-3.vcxproj|solutionrelative:stdafx.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{F548DA79-2C22-4071-8A86-503474DC7273}|LabProject07-3.vcxproj|D:\\ColliderCheck\\\uB2E4\uB809\uC5F0\uC2B5\uC6A9\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F548DA79-2C22-4071-8A86-503474DC7273}|LabProject07-3.vcxproj|solutionrelative:Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F548DA79-2C22-4071-8A86-503474DC7273}|LabProject07-3.vcxproj|D:\\ColliderCheck\\\uB2E4\uB809\uC5F0\uC2B5\uC6A9\\Scene.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F548DA79-2C22-4071-8A86-503474DC7273}|LabProject07-3.vcxproj|solutionrelative:Scene.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F548DA79-2C22-4071-8A86-503474DC7273}|LabProject07-3.vcxproj|D:\\ColliderCheck\\\uB2E4\uB809\uC5F0\uC2B5\uC6A9\\Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F548DA79-2C22-4071-8A86-503474DC7273}|LabProject07-3.vcxproj|solutionrelative:Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F548DA79-2C22-4071-8A86-503474DC7273}|LabProject07-3.vcxproj|D:\\ColliderCheck\\\uB2E4\uB809\uC5F0\uC2B5\uC6A9\\GameFramework.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F548DA79-2C22-4071-8A86-503474DC7273}|LabProject07-3.vcxproj|solutionrelative:GameFramework.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F548DA79-2C22-4071-8A86-503474DC7273}|LabProject07-3.vcxproj|D:\\ColliderCheck\\\uB2E4\uB809\uC5F0\uC2B5\uC6A9\\Object.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F548DA79-2C22-4071-8A86-503474DC7273}|LabProject07-3.vcxproj|solutionrelative:Object.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,56 +38,108 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "stdafx.cpp",
-              "DocumentMoniker": "C:\\Users\\\uC11C\uAC00\uC740\\Desktop\\\uB2E4\uB809\uC5F0\uC2B5\uC6A9\\stdafx.cpp",
-              "RelativeDocumentMoniker": "stdafx.cpp",
-              "ToolTip": "C:\\Users\\\uC11C\uAC00\uC740\\Desktop\\\uB2E4\uB809\uC5F0\uC2B5\uC6A9\\stdafx.cpp",
-              "RelativeToolTip": "stdafx.cpp",
-              "ViewState": "AgIAAD0AAAAAAAAAAAAkwKwAAAAIAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "Player.h",
+              "DocumentMoniker": "D:\\ColliderCheck\\\uB2E4\uB809\uC5F0\uC2B5\uC6A9\\Player.h",
+              "RelativeDocumentMoniker": "Player.h",
+              "ToolTip": "D:\\ColliderCheck\\\uB2E4\uB809\uC5F0\uC2B5\uC6A9\\Player.h",
+              "RelativeToolTip": "Player.h",
+              "ViewState": "AgIAACkAAAAAAAAAAAAowDoAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-04-06T06:55:07.291Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{68487888-204a-11d3-87eb-00c04f7971a5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "GameFramework.cpp",
+              "DocumentMoniker": "D:\\ColliderCheck\\\uB2E4\uB809\uC5F0\uC2B5\uC6A9\\GameFramework.cpp",
+              "RelativeDocumentMoniker": "GameFramework.cpp",
+              "ToolTip": "D:\\ColliderCheck\\\uB2E4\uB809\uC5F0\uC2B5\uC6A9\\GameFramework.cpp",
+              "RelativeToolTip": "GameFramework.cpp",
+              "ViewState": "AgIAAFsCAAAAAAAAAAAowHUCAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-03-05T08:10:02.56Z",
-              "IsPinned": true
+              "WhenOpened": "2025-04-06T07:17:19.544Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Scene.h",
+              "DocumentMoniker": "D:\\ColliderCheck\\\uB2E4\uB809\uC5F0\uC2B5\uC6A9\\Scene.h",
+              "RelativeDocumentMoniker": "Scene.h",
+              "ToolTip": "D:\\ColliderCheck\\\uB2E4\uB809\uC5F0\uC2B5\uC6A9\\Scene.h",
+              "RelativeToolTip": "Scene.h",
+              "ViewState": "AgIAADwAAAAAAAAAAAAAAEcAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-04-06T07:07:04.733Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Scene.cpp",
+              "DocumentMoniker": "D:\\ColliderCheck\\\uB2E4\uB809\uC5F0\uC2B5\uC6A9\\Scene.cpp",
+              "RelativeDocumentMoniker": "Scene.cpp",
+              "ToolTip": "D:\\ColliderCheck\\\uB2E4\uB809\uC5F0\uC2B5\uC6A9\\Scene.cpp*",
+              "RelativeToolTip": "Scene.cpp*",
+              "ViewState": "AgIAAPkAAAAAAAAAAAAAAAYBAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-04-06T06:49:15.803Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Mesh.h",
-              "DocumentMoniker": "C:\\Users\\\uC11C\uAC00\uC740\\Desktop\\\uB2E4\uB809\uC5F0\uC2B5\uC6A9\\Mesh.h",
-              "RelativeDocumentMoniker": "Mesh.h",
-              "ToolTip": "C:\\Users\\\uC11C\uAC00\uC740\\Desktop\\\uB2E4\uB809\uC5F0\uC2B5\uC6A9\\Mesh.h",
-              "RelativeToolTip": "Mesh.h",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAAwEsAAACVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-03-04T11:52:06.457Z",
-              "IsPinned": true
+              "Title": "Player.cpp",
+              "DocumentMoniker": "D:\\ColliderCheck\\\uB2E4\uB809\uC5F0\uC2B5\uC6A9\\Player.cpp",
+              "RelativeDocumentMoniker": "Player.cpp",
+              "ToolTip": "D:\\ColliderCheck\\\uB2E4\uB809\uC5F0\uC2B5\uC6A9\\Player.cpp",
+              "RelativeToolTip": "Player.cpp",
+              "ViewState": "AgIAAKQAAAAAAAAAAAAAALQAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-04-06T06:58:52.925Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 6,
               "Title": "Object.cpp",
-              "DocumentMoniker": "C:\\Users\\\uC11C\uAC00\uC740\\Desktop\\\uB2E4\uB809\uC5F0\uC2B5\uC6A9\\Object.cpp",
+              "DocumentMoniker": "D:\\ColliderCheck\\\uB2E4\uB809\uC5F0\uC2B5\uC6A9\\Object.cpp",
               "RelativeDocumentMoniker": "Object.cpp",
-              "ToolTip": "C:\\Users\\\uC11C\uAC00\uC740\\Desktop\\\uB2E4\uB809\uC5F0\uC2B5\uC6A9\\Object.cpp",
+              "ToolTip": "D:\\ColliderCheck\\\uB2E4\uB809\uC5F0\uC2B5\uC6A9\\Object.cpp",
               "RelativeToolTip": "Object.cpp",
-              "ViewState": "AgIAACEAAAAAAAAAAAAAACgAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAGAAAAAAAAAAAAAAACgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-04-04T08:02:47.721Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Mesh.cpp",
-              "DocumentMoniker": "C:\\Users\\\uC11C\uAC00\uC740\\Desktop\\\uB2E4\uB809\uC5F0\uC2B5\uC6A9\\Mesh.cpp",
+              "DocumentMoniker": "D:\\ColliderCheck\\\uB2E4\uB809\uC5F0\uC2B5\uC6A9\\Mesh.cpp",
               "RelativeDocumentMoniker": "Mesh.cpp",
-              "ToolTip": "C:\\Users\\\uC11C\uAC00\uC740\\Desktop\\\uB2E4\uB809\uC5F0\uC2B5\uC6A9\\Mesh.cpp",
+              "ToolTip": "D:\\ColliderCheck\\\uB2E4\uB809\uC5F0\uC2B5\uC6A9\\Mesh.cpp",
               "RelativeToolTip": "Mesh.cpp",
-              "ViewState": "AgIAAEcBAAAAAAAAAAAAAFcBAAAPAAAAAAAAAA==",
+              "ViewState": "AgIAACgBAAAAAAAAAAAAAPcAAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-03-15T11:51:32.582Z",
               "EditorCaption": ""

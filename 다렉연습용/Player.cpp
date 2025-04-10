@@ -18,7 +18,7 @@ CPlayer::CPlayer(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dComman
 	m_xmf3Look = XMFLOAT3(0.0f, 0.0f, 1.0f);
 
 	m_xmf3Velocity = XMFLOAT3(0.0f, 0.0f, 0.0f);
-	m_xmf3Gravity = XMFLOAT3(0.0f, 0.0f, 0.0f);
+	m_xmf3Gravity = XMFLOAT3(0.0f, -9.80f, 0.0f);
 	m_fMaxVelocityXZ = 0.0f;
 	m_fMaxVelocityY = 0.0f;
 	m_fFriction = 0.0f;
@@ -168,6 +168,8 @@ void CPlayer::Rotate(float x, float y, float z)
 
 void CPlayer::Update(float fTimeElapsed, CScene* pScene)
 {
+	ApplyGravity(fTimeElapsed);
+
 	m_xmf3Velocity = Vector3::Add(m_xmf3Velocity, Vector3::ScalarProduct(m_xmf3Gravity, fTimeElapsed, false));
 	float fLength = sqrtf(m_xmf3Velocity.x * m_xmf3Velocity.x + m_xmf3Velocity.z * m_xmf3Velocity.z);
 	float fMaxVelocityXZ = m_fMaxVelocityXZ * fTimeElapsed;
@@ -197,6 +199,8 @@ void CPlayer::Update(float fTimeElapsed, CScene* pScene)
 	if (fDeceleration > fLength) fDeceleration = fLength;
 	m_xmf3Velocity = Vector3::Add(m_xmf3Velocity, Vector3::ScalarProduct(m_xmf3Velocity, -fDeceleration, true));
 }
+
+
 
 CCamera *CPlayer::OnChangeCamera(DWORD nNewCameraMode, DWORD nCurrentCameraMode)
 {
@@ -258,6 +262,23 @@ void CPlayer::Render(ID3D12GraphicsCommandList *pd3dCommandList, CCamera *pCamer
 		OnPrepareRender();
 		CGameObject::Render(pd3dCommandList, pCamera);
 	}
+}
+
+void CPlayer::ApplyGravity(float fTimeElapsed)
+{
+	const float gravity = -1.8f;
+	/*if (!m_bOnGround)
+	{
+		m_xmf3Velocity.y -= gravity * fTimeElapsed;
+	}
+	else
+	{
+		m_xmf3Velocity.y = 0.0f;
+	}*/
+	if (!m_bOnGround)
+		m_xmf3Velocity.y += gravity * fTimeElapsed;
+	else
+		m_xmf3Velocity.y = 0.0f;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -69,6 +69,8 @@ public:
 
 
 	//Ãß°¡
+	bool CheckGroundCollision(CPlayer* pPlayer);
+
 	void ResolveCollision(CPlayer* player, CGameObject* object);
 
 	bool ProcessInput(UCHAR *pKeysBuffer);
