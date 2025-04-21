@@ -5,6 +5,10 @@
 #include "LabProject07-3.h"
 #include "GameFramework.h"
 
+#if defined(_DEBUG)
+#pragma comment(linker, "/entry:wWinMainCRTStartup /subsystem:console")
+#endif
+
 #define MAX_LOADSTRING 100
 
 HINSTANCE						ghAppInstance;
@@ -157,4 +161,9 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 		break;
 	}
 	return((INT_PTR)FALSE);
+}
+
+int main()
+{
+
 }

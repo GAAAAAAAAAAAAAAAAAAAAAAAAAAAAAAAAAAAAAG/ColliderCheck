@@ -84,6 +84,88 @@ bool CMesh::CheckMeshCollision(CMesh* pOtherMesh, const XMFLOAT4X4& worldMatrix1
 	return false;
 }
 
+bool CMesh::CheckPointCollision(const XMFLOAT3& point, const XMFLOAT4X4& worldMatrix)
+{
+	for (UINT i = 0; i < m_nIndices; i += 3)
+	{
+		XMFLOAT3 v0 = Vector3::TransformCoord(m_pxmf3Positions[m_pnIndices[i]], worldMatrix);
+		XMFLOAT3 v1 = Vector3::TransformCoord(m_pxmf3Positions[m_pnIndices[i + 1]], worldMatrix);
+		XMFLOAT3 v2 = Vector3::TransformCoord(m_pxmf3Positions[m_pnIndices[i + 2]], worldMatrix);
+
+		if (PointInTriangle(point, v0, v1, v2))
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+bool CMesh::PointInTriangle(const XMFLOAT3& p, const XMFLOAT3& a, const XMFLOAT3& b, const XMFLOAT3& c)
+{
+	XMFLOAT3 ab = Vector3::Subtract(b, a);
+	XMFLOAT3 ac = Vector3::Subtract(c, a);
+	XMFLOAT3 ap = Vector3::Subtract(p, a);
+
+	float d1 = Vector3::DotProduct(ab, ap);
+	float d2 = Vector3::DotProduct(ac, ap);
+
+	if (d1 < 0.0f || d2 < 0.0f) return false;
+
+	float d3 = Vector3::DotProduct(ab, ab);
+	float d4 = Vector3::DotProduct(ac, ac);
+
+	return (d1 <= d3) && (d2 <= d4);
+}
+
+bool CMesh::CheckRayGroundCollision(const XMFLOAT3& rayOrigin, const XMFLOAT3& rayDir, float maxDistance, const XMFLOAT4X4& worldMatrix)
+{
+	XMMATRIX matWorld = XMLoadFloat4x4(&worldMatrix);
+
+	for (UINT i = 0; i < m_nIndices; i += 3)
+	{
+		XMVECTOR v0 = XMVector3TransformCoord(XMLoadFloat3(&m_pxmf3Positions[m_pnIndices[i]]), matWorld);
+		XMVECTOR v1 = XMVector3TransformCoord(XMLoadFloat3(&m_pxmf3Positions[m_pnIndices[i + 1]]), matWorld);
+		XMVECTOR v2 = XMVector3TransformCoord(XMLoadFloat3(&m_pxmf3Positions[m_pnIndices[i + 2]]), matWorld);
+
+		float distance = 0.0f;
+		if (RayIntersectsTriangle(XMLoadFloat3(&rayOrigin), XMLoadFloat3(&rayDir), v0, v1, v2, distance))
+		{
+			if (distance <= maxDistance)
+				return true;
+		}
+	}
+	return false;
+}
+
+bool CMesh::RayIntersectsTriangle(XMVECTOR rayOrigin, XMVECTOR rayDir, XMVECTOR v0, XMVECTOR v1, XMVECTOR v2, float& t)
+{
+	constexpr float EPSILON_ = 0.000001f;
+	XMVECTOR edge1 = XMVectorSubtract(v1, v0);
+	XMVECTOR edge2 = XMVectorSubtract(v2, v0);
+	XMVECTOR h = XMVector3Cross(rayDir, edge2);
+	float a = XMVectorGetX(XMVector3Dot(edge1, h));
+
+	if (fabs(a) < EPSILON_)
+		return false; // 평행
+
+	float f = 1.0f / a;
+	XMVECTOR s = XMVectorSubtract(rayOrigin, v0);
+	float u = f * XMVectorGetX(XMVector3Dot(s, h));
+	if (u < 0.0f || u > 1.0f)
+		return false;
+
+	XMVECTOR q = XMVector3Cross(s, edge1);
+	float v = f * XMVectorGetX(XMVector3Dot(rayDir, q));
+	if (v < 0.0f || u + v > 1.0f)
+		return false;
+
+	t = f * XMVectorGetX(XMVector3Dot(edge2, q));
+	if (t > EPSILON_)
+		return true;
+
+	return false;
+}
+
 
 bool CMesh::TriangleIntersectsTriangle(const XMFLOAT3& v0, const XMFLOAT3& v1, const XMFLOAT3& v2,
 	const XMFLOAT3& u0, const XMFLOAT3& u1, const XMFLOAT3& u2)

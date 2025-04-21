@@ -247,6 +247,13 @@ bool CScene::ProcessInput(UCHAR *pKeysBuffer)
 
 bool CScene::CheckObjectByObjectCollisions(CGameObject* pTargetGameObject)
 {
+	bool bIsGround = false;
+
+	XMFLOAT3 rayOrigin = m_pPlayer->GetPosition();
+	rayOrigin.y -= m_pPlayer->m_xmBoundingBox.Extents.y * 0.9f; // 발밑에서 Ray 시작
+	XMFLOAT3 rayDir = { 0.0f, -1.0f, 0.0f }; // 아래 방향
+	float maxDistance = 5.0f; // 최대 체크 거리
+
 	for (int i = 0; i < m_nObjectShaders; i++)
 	{
 		for (int j = 0; j < m_ppObjectShaders[i]->m_nObjects; j++)
@@ -254,37 +261,41 @@ bool CScene::CheckObjectByObjectCollisions(CGameObject* pTargetGameObject)
 			CGameObject* pGameObject = m_ppObjectShaders[i]->m_ppObjects[j];
 			if (!pGameObject || pGameObject == pTargetGameObject) continue;
 
+			// 1차: OBB 충돌 검사
 			if (m_pPlayer->m_xmBoundingBox.Intersects(pGameObject->m_xmBoundingBox))
 			{
-				if (nullptr != pGameObject->m_pMesh)
+				if (pGameObject->m_pMesh && m_pPlayer->m_pMesh)
 				{
 					if (m_pPlayer->m_pMesh->CheckOBBMeshCollision(m_pPlayer->m_xmBoundingBox, pGameObject->m_pMesh, m_pPlayer->m_xmf4x4World, pGameObject->m_xmf4x4World))
 					{
-						float deltaY = m_pPlayer->GetPosition().y - pGameObject->GetPosition().y;
-						if (deltaY > 0.0f && deltaY < 20.0f) // 바닥이라고 판단할 수 있는 높이
+						// 2차: 발밑으로 RayCast 체크
+						if (pGameObject->m_pMesh->CheckRayGroundCollision(rayOrigin, rayDir, maxDistance, pGameObject->m_xmf4x4World))
 						{
+							// 바닥임
+							bIsGround = true;
 							m_pPlayer->SetOnGround(true);
-							m_pPlayer->SetVelocityY(0.0f); // y 속도 정지
-
+							m_pPlayer->SetVelocityY(0.0f);
+							std::cout << "바닥임 (OBB + Ray 체크)" << std::endl;
 							return true;
 						}
 						else
 						{
-							// 바닥이 아니면 위치 복구 및 속도 제한
+							// 바닥이 아니면 벽 충돌 (슬라이딩 처리)
 							ResolveCollision(m_pPlayer, pGameObject);
 							return true;
 						}
-
-						//TODO: 여기에 충돌처리 로직 넣어보자
-						//ResolveCollision(m_pPlayer, pGameObject);
 					}
 				}
 			}
 		}
 	}
-	m_pPlayer->SetOnGround(false); // 아무 것도 닿지 않으면 공중
+
+	m_pPlayer->SetOnGround(false);
 	return false;
 }
+
+
+
 
 //void CScene::ResolveCollision(CPlayer* player, CGameObject* object)
 //{
@@ -423,7 +434,7 @@ void CCanaleScene::BuildObjects(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandL
 
 	CObjectsShader* pObjectShader = new CObjectsShader();
 	pObjectShader->CreateShader(pd3dDevice, pd3dCommandList, m_pd3dGraphicsRootSignature, D3D12_PRIMITIVE_TOPOLOGY_TYPE_TRIANGLE);
-	pObjectShader->BuildObjects(pd3dDevice, pd3dCommandList, "Models/Canalescene/Scene.bin");
+	pObjectShader->BuildObjects(pd3dDevice, pd3dCommandList, "Models/JK/Scene.bin");
 	m_ppObjectShaders[0] = pObjectShader;
 }
 

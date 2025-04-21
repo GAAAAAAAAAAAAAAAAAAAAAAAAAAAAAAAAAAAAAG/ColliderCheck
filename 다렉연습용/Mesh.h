@@ -70,6 +70,10 @@ public:
 	// 충돌 검사 함수 추가
 	bool CheckMeshCollision(CMesh* pOtherMesh, const XMFLOAT4X4& worldMatrix1, const XMFLOAT4X4& worldMatrix2);
 
+	bool CheckPointCollision(const XMFLOAT3& point, const XMFLOAT4X4& worldMatrix);
+
+	bool PointInTriangle(const XMFLOAT3& p, const XMFLOAT3& a, const XMFLOAT3& b, const XMFLOAT3& c);
+
 	static bool TriangleIntersectsTriangle(const XMFLOAT3& v0, const XMFLOAT3& v1, const XMFLOAT3& v2,
 		const XMFLOAT3& u0, const XMFLOAT3& u1, const XMFLOAT3& u2);
 
@@ -78,6 +82,8 @@ public:
 	bool TriangleIntersectsOBB(const XMFLOAT3& v0, const XMFLOAT3& v1, const XMFLOAT3& v2, const BoundingOrientedBox& obb);
 
 	BoundingOrientedBox GetBoundingBox() { return(m_xmBoundingBox); }
+	bool CheckRayGroundCollision(const XMFLOAT3& rayOrigin, const XMFLOAT3& rayDir, float maxDistance, const XMFLOAT4X4& worldMatrix);
+	bool RayIntersectsTriangle(XMVECTOR rayOrigin, XMVECTOR rayDir, XMVECTOR v0, XMVECTOR v1, XMVECTOR v2, float& t);
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
